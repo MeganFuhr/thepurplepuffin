@@ -1,0 +1,20 @@
+query {
+  birdCollection {
+    items {
+      sys {
+        id
+      }
+      name
+      description
+      image {
+        title
+        description
+        url
+      }
+      location {
+        lat
+        lon
+      }
+    }
+  }
+}
