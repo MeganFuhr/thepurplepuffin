@@ -35,15 +35,15 @@ code {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-}
+  }
 
 .h1__title {
   font-family: 'Amatic SC', cursive;
   font-size: 96px;
   font-weight: normal;
   color: var(--pink);
-  letter-spacing: .25rem;
   line-height: 100px;
+  width: auto;
 }
 
 .h1__span {
