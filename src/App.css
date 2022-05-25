@@ -30,20 +30,8 @@ code {
     display: none;
   }
 
-  .div__title {
+ .div__title {
     display: block;
-  }
-}
-
-@media only screen and (max-width: 536px) {
-  .div__content {
-    margin: 205px auto !important;
-  }
-}
-
-@media only screen and (max-width: 310px) {
-  .div__content {
-    margin: 305px auto !important;
   }
 }
 
@@ -87,18 +75,40 @@ nav {
 .div__content {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   margin: 105px auto;
-  min-height: 100vh;
-  border: 10px solid red;
+  /* border: 10px solid red; */
+  min-width: 36rem;
 }
 
 .div__card {
-  min-width: 80%;
+  min-width: 36rem;
+  height: 15rem;
   margin: 0 auto;
   background-color: var(--white);
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   display: flex;
-  flex-direction: column;
+}
+
+.div__card:hover {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.50);
+}
+
+.img__card {
+  border-radius: 15px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.div__card_content {
+  display: flex;
+  align-items: center;
+
+}
+
+.div__card_content_text {
+margin: 1rem;
 }

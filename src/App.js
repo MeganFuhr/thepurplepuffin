@@ -7,7 +7,6 @@ function App() {
     <main>
       <Title />
       <div className="div__content">
-        <h1>Master container</h1>
         <Card />
       </div>
     </main>
