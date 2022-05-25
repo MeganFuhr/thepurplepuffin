@@ -6,8 +6,9 @@ function App() {
   return (
     <main>
       <Title />
-      <div className="content">
+      <div className="div__content">
         <h1>Master container</h1>
+        <Card />
       </div>
     </main>
   );
