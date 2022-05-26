@@ -10,6 +10,13 @@ function App() {
       <Search />
       <div className="div__content">
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     </main>
   );
