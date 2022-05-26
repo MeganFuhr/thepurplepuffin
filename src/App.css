@@ -33,6 +33,12 @@ code {
  .div__title {
     display: block;
   }
+
+  .div__search {
+    width: 300px !important;
+    margin-left: 11rem !important;
+  }
+
 }
 
 nav {
@@ -145,29 +151,23 @@ nav {
 .div__search {
   display: flex;
   position: sticky;
-  /* justify-content: space-evenly; */
-  align-content: space-around;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   margin: 7rem auto 1rem auto;
-  width: 300px;
-  float:center;
-  /* min-width: 50%; */
+  width: 50%; 
   border: 1px solid green;
-  /* margin-top: 7rem;
-  margin-bottom: 1rem; */
-  overflow:visible;
+  /* overflow: visible; */
 }
 
-.p__search_text{
+.h3__search_text{
   font-family: 'Amatic SC';
   font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
   margin: auto;
-  color: var(--purple);  
-  width: 300px;
-  min-width: 300px;
+  color: var(--purple);
 }
 
 .input__search {
