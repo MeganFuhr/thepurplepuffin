@@ -11,9 +11,12 @@ export default function Card() {
         ></img>
       </div>
       <div className="div__card_content_text">
-        <h1>TUFTED TITMOUSE</h1>
-        <p>Slate gray bird with white chest and belly. Pointed crest.</p>
-        <div>THIS IS WHER I WILL PUT GOOGLE API.</div>
+        <h1 className="h1__card_title">TUFTED TITMOUSE</h1>
+        <p className="p__card_desription">
+          Slate gray bird with white chest and belly. Pointed crest.
+        </p>
+        <p className="p__card_lonlat">Lon: 70.3711 Lat: 43.67702</p>
+        <div>THIS IS WHERE I WILL PUT GOOGLE API.</div>
       </div>
     </div>
   );
