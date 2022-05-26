@@ -15,7 +15,9 @@ export default function Card() {
         <p className="p__card_desription">
           Slate gray bird with white chest and belly. Pointed crest.
         </p>
-        <p className="p__card_lonlat">Lon: 70.3711 Lat: 43.67702</p>
+        <p className="p__card_lonlat">
+          Lon: 70.3711 &nbsp; &nbsp; Lat: 43.67702
+        </p>
         <div>THIS IS WHERE I WILL PUT GOOGLE API.</div>
       </div>
     </div>
