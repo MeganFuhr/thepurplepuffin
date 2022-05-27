@@ -41,10 +41,11 @@ function App() {
       method: "post",
       headers: headers,
       data: { query },
-    }).then((response) => {
-      // console.log(response.data.data.birdCollection.items);
-      setBirds(response.data.data.birdCollection);
-    });
+    })
+      .then((response) => {
+        setBirds(response.data.data.birdCollection);
+      })
+      .catch((err) => console.log(`dafuq ${err}`));
   }, []);
 
   return (
@@ -53,7 +54,6 @@ function App() {
       <Search />
       <div className="div__content">
         {birds.items.map((item) => {
-          // return console.log(item);
           return <Card key={item.sys.id} {...item} />;
         })}
       </div>
