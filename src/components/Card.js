@@ -6,7 +6,7 @@ export default function Card() {
       <div className="div__card_content">
         <img
           className="img__card"
-          src="https://images.ctfassets.net/fk18omwn255s/5gCEadCWcBhd21aCrLbDDU/9a483fc8652a6ae52b971c070736a880/tuftedTitmouse.jpg?fm=avif"
+          src="https://images.ctfassets.net/fk18omwn255s/5gCEadCWcBhd21aCrLbDDU/9a483fc8652a6ae52b971c070736a880/tuftedTitmouse.jpg?fm=avif&q=10"
           alt="This is a bird."
         ></img>
       </div>
