@@ -108,7 +108,7 @@ nav {
 
 .img__card {
   padding: 1rem;
-  height: 200px;
+  /* height: 200px; */
   object-fit: contain;
   border-radius: 2rem;
 }
@@ -164,7 +164,7 @@ nav {
   /* overflow: visible; */
 }
 
-.h3__search_text{
+.h1__search_text{
   font-family: 'Amatic SC';
   font-style: normal;
   font-weight: 700;
