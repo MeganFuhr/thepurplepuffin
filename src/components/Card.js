@@ -1,22 +1,20 @@
 import React from "react";
 
-export default function Card() {
+export default function Card(props) {
   return (
     <div className="div__card">
       <div className="div__card_content">
         <img
           className="img__card"
-          src="https://images.ctfassets.net/fk18omwn255s/5gCEadCWcBhd21aCrLbDDU/9a483fc8652a6ae52b971c070736a880/tuftedTitmouse.jpg?fm=avif&q=50&w=200&h=200"
-          alt="This is a bird."
+          src={`${props.image.url}?fm=avif&q=50&w=200&h=200`}
+          alt={props.description}
         ></img>
       </div>
       <div className="div__card_content_text">
-        <h1 className="h1__card_title">TUFTED TITMOUSE</h1>
-        <p className="p__card_desription">
-          Slate gray bird with white chest and belly. Pointed crest.
-        </p>
+        <h1 className="h1__card_title">{props.name}</h1>
+        <p className="p__card_desription">{props.description}</p>
         <p className="p__card_lonlat">
-          Lon: 70.3711 &nbsp; &nbsp; Lat: 43.67702
+          Lon: {props.location.lon} &nbsp; &nbsp; {props.location.lat}
         </p>
         <div>THIS IS WHERE I WILL PUT GOOGLE API.</div>
       </div>
