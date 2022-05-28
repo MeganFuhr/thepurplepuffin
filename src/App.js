@@ -11,11 +11,11 @@ function App() {
 
   const birdContent = () => {
     return (
-      <div className="div__content">
+      <>
         {birds.items.map((item) => {
           return <Card key={item.sys.id} {...item} />;
         })}
-      </div>
+      </>
     );
   };
 
@@ -64,14 +64,9 @@ function App() {
     <main>
       <Title />
       <Search />
-      {
-        isLoading ? "loading..." : birdContent()
-        // <div className="div__content">
-        //   {birds.items.map((item) => {
-        //     return <Card key={item.sys.id} {...item} />;
-        //   })}
-        // </div>
-      }
+      <div className="div__content">
+        {isLoading ? "loading..." : birdContent()}
+      </div>
     </main>
   );
 }
