@@ -6,7 +6,7 @@ export default function Card(props) {
       <div className="div__card_content">
         <img
           className="img__card"
-          src={`${props.image.url}?fm=avif&q=50&w=200&h=200`}
+          src={`${props.image.url}?f=center&w=200&h=200&fm=avif&q=50&fit=scale`}
           alt={props.description}
         ></img>
       </div>
