@@ -7,6 +7,17 @@ import axios from "axios";
 
 function App() {
   const [birds, setBirds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const birdContent = () => {
+    return (
+      <div className="div__content">
+        {birds.items.map((item) => {
+          return <Card key={item.sys.id} {...item} />;
+        })}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const headers = {
@@ -44,6 +55,7 @@ function App() {
     })
       .then((response) => {
         setBirds(response.data.data.birdCollection);
+        setIsLoading(false);
       })
       .catch((err) => console.log(`dafuq ${err}`));
   }, []);
@@ -52,11 +64,14 @@ function App() {
     <main>
       <Title />
       <Search />
-      <div className="div__content">
-        {birds.items.map((item) => {
-          return <Card key={item.sys.id} {...item} />;
-        })}
-      </div>
+      {
+        isLoading ? "loading..." : birdContent()
+        // <div className="div__content">
+        //   {birds.items.map((item) => {
+        //     return <Card key={item.sys.id} {...item} />;
+        //   })}
+        // </div>
+      }
     </main>
   );
 }
