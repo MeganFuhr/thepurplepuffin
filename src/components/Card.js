@@ -19,15 +19,17 @@ export default function Card(props) {
         <p className="p__card_lonlat">
           Lon: {props.location.lon} &nbsp; &nbsp; {props.location.lat}
         </p>
-        {isFetchingMap ? (
-          "loading"
-        ) : (
-          <GetMap
-            setIsFetchingMap={setIsFetchingMap}
-            lon={props.location.lon}
-            lat={props.location.lat}
-          />
-        )}
+        {console.log(typeof [-70.3547, 43.74369])}
+        {console.log(typeof -70.3547)}
+        {
+          isFetchingMap
+            ? "loading"
+            : GetMap(setIsFetchingMap, props.location.lon, props.location.lat)
+          //   setIsFetchingMap={setIsFetchingMap}
+          //   lon={props.location.lon}
+          //   lat={props.location.lat}
+          // />
+        }
       </div>
     </div>
   );
