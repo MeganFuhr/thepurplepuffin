@@ -29,14 +29,13 @@ export default function GetMap(setIsFetchingMap, lon, lat) {
           source: new VectorSource({
             features: [
               new Feature({
-                geometry: new Point(fromLonLat([lon, lat])),
+                geometry: new Point([lon, lat]),
               }),
             ],
           }),
         }),
       ],
       view: new View({
-        // center: fromLonLat([-70.3547, 43.74369]), //this isn't working with vars
         center: [lon, lat],
         zoom: 10,
         projection: "EPSG:4326", //need this
