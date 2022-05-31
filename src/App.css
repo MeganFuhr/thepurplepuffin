@@ -84,7 +84,6 @@ nav {
   flex-direction: column;
   width: 100%;
   margin: auto;
-  /* border: 10px solid red; */
   min-width: 36rem;
 }
 
@@ -98,8 +97,6 @@ nav {
   display: flex;
   transition: 0.2s;
   outline: 1px solid rgb(243, 243, 243);
-
-  /* border: 1px solid red; */
 }
 
 .div__card:hover {
@@ -217,7 +214,6 @@ nav {
   border-radius: .25rem;
   border-color: var(--pink);
 }
-
 
 .ol-rotate-reset {
   display: none;
