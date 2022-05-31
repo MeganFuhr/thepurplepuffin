@@ -10,6 +10,8 @@ import Style from "ol/style/Style";
 import Icon from "ol/style/Icon";
 import star from "../img/icon-star.png";
 import Zoom from "ol/control/Zoom";
+import Rotate from "ol/control/Rotate";
+import Attribution from "ol/control/Attribution";
 
 //https://taylor.callsen.me/using-openlayers-with-react-functional-components/
 export default function GetMap(lon, lat) {
@@ -46,6 +48,8 @@ export default function GetMap(lon, lat) {
       view: new View({
         controls: [
           new Zoom({ className: "ol-zoom-in" }, { className: "ol-zoom-out" }),
+          new Rotate({ className: "ol-rotate-reset" }),
+          new Attribution({ className: "ol-attribution" }),
         ],
         center: [lon, lat],
         zoom: 10,
