@@ -6,9 +6,12 @@ import VectorLayer from "ol/layer/Vector";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
 import VectorSource from "ol/source/Vector";
+import Style from "ol/style/Style";
+import Icon from "ol/style/Icon";
 
+const star = "../../public/star.png";
 //https://taylor.callsen.me/using-openlayers-with-react-functional-components/
-export default function GetMap(setIsFetchingMap, lon, lat) {
+export default function GetMap(lon, lat) {
   const [map, setMap] = useState();
   const mapElement = useRef();
   const mapRef = useRef();
@@ -38,7 +41,7 @@ export default function GetMap(setIsFetchingMap, lon, lat) {
       }),
     });
     setMap(initialMap);
-  }, [setIsFetchingMap, lon, lat]);
+  }, [lon, lat]);
 
   return <div className="map" ref={mapElement} />;
 }
