@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import GetMap from "./GetMap";
 
 export default function Card(props) {
+  const [isFetchingMap, setIsFetchingMap] = useState(false);
+
   return (
     <div className="div__card">
       <div className="div__card_content">
@@ -16,7 +19,9 @@ export default function Card(props) {
         <p className="p__card_lonlat">
           Lon: {props.location.lon} &nbsp; &nbsp; {props.location.lat}
         </p>
-        <div>THIS IS WHERE I WILL PUT GOOGLE API.</div>
+        {isFetchingMap
+          ? "loading"
+          : GetMap(setIsFetchingMap, props.location.lon, props.location.lat)}
       </div>
     </div>
   );

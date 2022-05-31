@@ -61,13 +61,15 @@ function App() {
   }, []);
 
   return (
-    <main>
-      <Title />
-      <Search />
-      <div className="div__content">
-        {isLoading ? "loading..." : birdContent()}
-      </div>
-    </main>
+    <>
+      <main>
+        <Title />
+        <Search />
+        <div className="div__content">
+          {isLoading ? "loading..." : birdContent()}
+        </div>
+      </main>
+    </>
   );
 }
 
