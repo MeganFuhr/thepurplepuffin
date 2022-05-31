@@ -34,10 +34,9 @@ export default function GetMap(lon, lat) {
           }),
           style: new Style({
             image: new Icon({
-              anchor: [0.5, 0.5],
-              size: [50, 50],
+              anchor: [0.5, 24], //24px is the height of the image
               anchorXUnits: "fraction",
-              anchorYUnits: "fraction",
+              anchorYUnits: "pixels",
               src: star,
             }),
           }),
