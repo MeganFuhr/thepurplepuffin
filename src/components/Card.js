@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GetMap from "./GetMap";
 
 export default function Card(props) {
