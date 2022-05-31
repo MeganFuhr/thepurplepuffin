@@ -84,7 +84,6 @@ nav {
   flex-direction: column;
   width: 100%;
   margin: auto;
-  /* border: 10px solid red; */
   min-width: 36rem;
 }
 
@@ -98,8 +97,6 @@ nav {
   display: flex;
   transition: 0.2s;
   outline: 1px solid rgb(243, 243, 243);
-
-  /* border: 1px solid red; */
 }
 
 .div__card:hover {
@@ -199,24 +196,23 @@ nav {
   outline: 1px solid rgb(187, 187, 187);
 }
 
-.ol-zoom-in {
-  margin: 55px 0 0 0;
-  width: 50px;
-  background-color: var(--pink);
-  color: var(--white);
-  float: left;
-  border-radius: 1rem;
-  border-color: var(--pink);
-}
-
 .ol-zoom-out {
   margin: 55px 0 0 0;
   width: 50px;
   color: var(--white);
   background-color: var(--purple);
   float: right;
-  border-radius: 1rem;
+  border-radius: .25rem;
   border-color: var(--purple);
+}
+.ol-zoom-in {
+  margin: 55px 0 0 0;
+  width: 50px;
+  background-color: var(--pink);
+  color: var(--white);
+  float: left;
+  border-radius: .25rem;
+  border-color: var(--pink);
 }
 
 .ol-rotate-reset {
