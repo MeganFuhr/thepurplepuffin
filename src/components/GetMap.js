@@ -5,7 +5,6 @@ import OSM from "ol/source/OSM";
 import VectorLayer from "ol/layer/Vector";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
-import { fromLonLat } from "ol/proj";
 import VectorSource from "ol/source/Vector";
 
 //https://taylor.callsen.me/using-openlayers-with-react-functional-components/
@@ -14,9 +13,6 @@ export default function GetMap(setIsFetchingMap, lon, lat) {
   const mapElement = useRef();
   const mapRef = useRef();
   mapRef.current = map;
-
-  var center = [lon, lat];
-  console.log(center);
 
   useEffect(() => {
     const initialMap = new Map({
@@ -44,5 +40,5 @@ export default function GetMap(setIsFetchingMap, lon, lat) {
     setMap(initialMap);
   }, [setIsFetchingMap, lon, lat]);
 
-  return <div style={{ height: "75px", width: "400px" }} ref={mapElement} />;
+  return <div className="map" ref={mapElement} />;
 }
