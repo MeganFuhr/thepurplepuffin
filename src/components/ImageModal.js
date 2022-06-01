@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
+import Loading from "./Loading";
 
 export default function ImageModal({
   open,
@@ -19,7 +20,12 @@ export default function ImageModal({
           alt={description}
           onLoad={() => setLoaded(true)}
         />
-        {!loaded && "Loading . . ."}
+
+        {!loaded && (
+          <div className="div__loading">
+            <Loading />
+          </div>
+        )}
         <div className="div__image-modal-button-container">
           {name}
           <button className="button__image-modal" onClick={onClose}>

@@ -4,6 +4,7 @@ import Card from "./components/Card";
 import Search from "./components/Search";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./components/Loading";
 
 function App() {
   const [birds, setBirds] = useState([]);
@@ -66,7 +67,13 @@ function App() {
         <Title />
         <Search />
         <div className="div__content">
-          {isLoading ? "loading..." : birdContent()}
+          {isLoading ? (
+            <div className="div__loading">
+              <Loading />
+            </div>
+          ) : (
+            birdContent()
+          )}
         </div>
       </main>
     </>
