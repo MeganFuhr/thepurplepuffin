@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import GetMap from "./GetMap";
+import ImageModal from "./ImageModal";
 
 export default function Card(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="div__card">
       <div className="div__card_content">
@@ -9,7 +12,14 @@ export default function Card(props) {
           className="img__card"
           src={`${props.image.url}?f=center&w=200&h=200&fm=avif&q=50&fit=scale`}
           alt={props.description}
-        ></img>
+          onClick={() => setIsOpen(true)}
+        />
+        <ImageModal
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+          imgUrl={`${props.image.url}?w=800&h=600&fit=scale`}
+          description={props.description}
+        />
       </div>
       <div className="div__card_content_text">
         <h1 className="h1__card_title">{props.name}</h1>
