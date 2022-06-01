@@ -223,20 +223,48 @@ nav {
 }
 
 .modal__overlay{
-position:fixed;
-top:0;
-left:0;
-right:0;
-bottom: 0;
-background-color: rgba(55, 62, 152, 0.75);
+  position:fixed;
+  top: 0;
+  left:0;
+  right:0;
+  bottom: 0;
+  background-color: rgba(55, 62, 152, 0.75);
 }
 
-.div_image-modal{
+.div__image-modal{
   position: fixed;
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--white);
-  padding: 50px;
+  padding: 30px;
   z-index: 100;
+}
+
+.div__image-modal-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Bebas Neue';
+  align-items: center;
+  font-size: 2rem;
+}
+
+.button__image-modal {
+  width: fit-content;
+  background-color: var(--pink);
+  padding: 1rem;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;  
+  font-size: 1rem;
+  color: var(--white);
+  border-radius: .25rem;
+  margin-left: 25rem; /* Looks nicer when loading image*/
+}
+
+.button__image-modal:hover {
+  background-color: var(--purple);
 }
