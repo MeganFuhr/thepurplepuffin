@@ -1,5 +1,5 @@
 query {
-  birdCollection {
+  birdCollection(skip:1) {
 	total
     items {
       sys {
