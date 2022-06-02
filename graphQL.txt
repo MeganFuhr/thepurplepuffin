@@ -1,5 +1,6 @@
 query {
   birdCollection {
+	total
     items {
       sys {
         id
