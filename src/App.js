@@ -61,24 +61,6 @@ function App() {
       .catch((err) => console.log(`dafuq ${err}`));
   }, []);
 
-  const cards = document.querySelectorAll(".div__card");
-
-  const options = {
-    rootMargin: "0px",
-    threshold: 1,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.target.classList.toggle("card__show", entry.isIntersecting);
-    });
-  }, options);
-
-  cards.forEach((card) => {
-    observer.observe(card);
-    console.log(card);
-  });
-
   return (
     <>
       <main>
