@@ -20,7 +20,7 @@ const Card = (props) => {
     }, options);
 
     observer.observe(cardRef.current);
-  }, [cardRef, options]);
+  }, []);
 
   return (
     <div ref={cardRef} className="div__card">
