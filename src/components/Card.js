@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import GetMap from "./GetMap";
 import ImageModal from "./ImageModal";
 
-export default function Card(props) {
+const Card = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const cardRef = useRef();
+  const options = {
+    rootMargin: "0px",
+    threshold: 0.25,
+  };
+
+  useEffect(() => {
+    if (!cardRef?.current) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("card__show", entry.isIntersecting);
+      });
+    }, options);
+
+    observer.observe(cardRef.current);
+  }, [cardRef]);
 
   return (
-    <div className="div__card">
+    <div ref={cardRef} className="div__card">
       <div className="div__card_content">
         <img
           className="img__card"
@@ -34,4 +51,6 @@ export default function Card(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Card;
