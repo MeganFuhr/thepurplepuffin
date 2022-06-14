@@ -97,13 +97,13 @@ nav {
   display: flex;
   transition: 0.2s;
   outline: 1px solid rgb(243, 243, 243);
-  transform: translateX(100px);
+  transform: translateY(100px);
   opacity: 0;
   transition: 150ms;
-}
+} 
 
-.card__show {
-  transform: translateX(0);
+.card__show { 
+  transform: translateY(0);
   opacity: 1;
 }
 
