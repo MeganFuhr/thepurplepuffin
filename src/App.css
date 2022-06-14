@@ -87,8 +87,6 @@ nav {
   min-width: 36rem;
 }
 
-
-
 .div__card {
   min-width: 36rem;
   height: 16rem;
@@ -99,6 +97,14 @@ nav {
   display: flex;
   transition: 0.2s;
   outline: 1px solid rgb(243, 243, 243);
+  transform: translateX(100px);
+  opacity: 0;
+  transition: 150ms;
+}
+
+.card__show {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .div__card:hover {
@@ -108,7 +114,7 @@ nav {
 .img__card {
   padding: 1rem;
   object-fit: contain;
-  border-radius: 2rem;
+  border-radius: 1.75rem; 
 }
 
 .div__card_content {

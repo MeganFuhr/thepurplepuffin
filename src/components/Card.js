@@ -14,6 +14,7 @@ export default function Card(props) {
           alt={props.description}
           onClick={() => setIsOpen(true)}
         />
+
         <ImageModal
           open={isOpen}
           onClose={() => setIsOpen(false)}
@@ -22,6 +23,7 @@ export default function Card(props) {
           description={props.description}
         />
       </div>
+
       <div className="div__card_content_text">
         <h1 className="h1__card_title">{props.name}</h1>
         <p className="p__card_desription">{props.description}</p>
