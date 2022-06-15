@@ -25,7 +25,7 @@ const Card = (props) => {
           setIsSeen(true);
         }
       });
-    }, options);
+    });
 
     observer.observe(cardRef.current);
   });
