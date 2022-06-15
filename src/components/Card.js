@@ -1,9 +1,13 @@
+import { transformGeometryWithOptions } from "ol/format/Feature";
+import { set } from "ol/transform";
 import React, { useState, useRef, useEffect } from "react";
 import GetMap from "./GetMap";
 import ImageModal from "./ImageModal";
 
 const Card = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSeen, setIsSeen] = useState(false);
+
   const cardRef = useRef();
   const options = {
     rootMargin: "0px",
@@ -11,11 +15,15 @@ const Card = (props) => {
   };
 
   useEffect(() => {
-    if (!cardRef?.current) return;
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.classList.toggle("card__show", entry.isIntersecting);
+        if (isSeen && !entry.isIntersecting) {
+          entry.target.classList.remove("card__show");
+        } else {
+          entry.target.classList.add("card__show");
+          observer.unobserve(cardRef.current);
+          setIsSeen(true);
+        }
       });
     }, options);
 
