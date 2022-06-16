@@ -5,61 +5,40 @@ import Search from "./components/Search";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./components/Loading";
+import UseBirdSearch from "./UseBirdSearch";
 
 function App() {
-  const [birds, setBirds] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { birds, isLoading } = UseBirdSearch(`query {
+  birdCollection(skip:0 limit:3) {
+	total
+    items {
+      sys {
+        id
+      }
+      name
+      description
+      image {
+        title
+        description
+        url
+      }
+      location {
+        lat
+        lon
+      }
+    }
+  }
+}`);
 
-  const birdContent = () => {
+  const DisplayBirdContent = () => {
     return (
       <>
-        {birds.items.map((item) => {
+        {birds[0].items.map((item) => {
           return <Card key={item.sys.id} {...item} />;
         })}
       </>
     );
   };
-
-  useEffect(() => {
-    const headers = {
-      "content-type": "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_CONTENTFUL_API}`,
-    };
-
-    const query = `query {
-    birdCollection {
-      items {
-        sys {
-          id
-        }
-        name
-        description
-        image {
-          title
-          description
-          url
-        }
-        location {
-          lat
-          lon
-        }
-      }
-    }
-    }
-    `;
-
-    axios({
-      url: process.env.REACT_APP_CONTENTFUL_GRAPH_URL,
-      method: "post",
-      headers: headers,
-      data: { query },
-    })
-      .then((response) => {
-        setBirds(response.data.data.birdCollection);
-        setIsLoading(false);
-      })
-      .catch((err) => console.log(`dafuq ${err}`));
-  }, []);
 
   return (
     <>
@@ -67,12 +46,13 @@ function App() {
         <Title />
         <Search />
         <div className="div__content">
+          {console.log("App.js Birds: ", birds, "IsLoading is: ", isLoading)}
           {isLoading ? (
             <div className="div__loading">
               <Loading />
             </div>
           ) : (
-            birdContent()
+            DisplayBirdContent()
           )}
         </div>
       </main>
