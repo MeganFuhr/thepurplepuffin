@@ -7,8 +7,6 @@ const Card = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSeen, setIsSeen] = useState(false);
 
-  // UseBirdSearch(query);
-
   const cardRef = useRef();
   const options = {
     rootMargin: "0px",
