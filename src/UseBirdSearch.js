@@ -5,9 +5,8 @@ import React from "react";
 
 export default function UseBirdSearch(query) {
   const [birds, setBirds] = useState([]);
-  const limitNum = 3;
+
   const [isLoading, setIsLoading] = useState(true);
-  const [skipNum, setSkipNum] = useState(0);
 
   useEffect(() => {
     const headers = {
@@ -24,6 +23,7 @@ export default function UseBirdSearch(query) {
       .then((response) => {
         setBirds([...birds, response.data.data.birdCollection]);
         setIsLoading(false);
+        console.log("Calling UseBirdSearch");
       })
       .catch((err) =>
         console.log(`dafuq in useBirdSearch ${err} birds are${birds}`)
