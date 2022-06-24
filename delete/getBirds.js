@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import Card from "./components/Card";
+import Card from "../src/components/Card";
 import React from "react";
 
 export default function useBirdSearch(query) {
-  const [birds, setBirds] = useState([]);
+  const [birds, setBirds] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const total = useRef("");
 
@@ -21,15 +21,12 @@ export default function useBirdSearch(query) {
       data: { query },
     })
       .then((response) => {
-        console.log("Response: ", response.data.data.birdCollection);
-        setBirds((prevBirds) => {
-          console.log("prev Bird: ", prevBirds);
-          // console.log("Total: ", response.data.data.birdCollection.total);
-          total.current = response.data.data.birdCollection.total;
-          return response.data.data.birdCollection;
-        });
+        setBirds((prevBirds) => ({
+          ...prevBirds,
+          ...response.data.data.birdCollection,
+        }));
         setIsLoading(false);
-        console.log("Calling UseBirdSearch");
+        total.current = response.data.data.birdCollection.total;
       })
       .catch((err) =>
         console.log(

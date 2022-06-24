@@ -3,12 +3,21 @@ import axios from "axios";
 import Card from "./components/Card";
 import React from "react";
 
-export default function useBirdSearch(query) {
-  const [birds, setBirds] = useState([]);
+export default function useBirdSearch(query, skipNum) {
+  const [birds, setBirds] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
   const total = useRef("");
 
   useEffect(() => {
+    setBirds({});
+  }, [query]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setError(false);
+    let cancel;
     const headers = {
       "content-type": "application/json",
       Authorization: `Bearer ${process.env.REACT_APP_CONTENTFUL_API}`,
@@ -19,23 +28,24 @@ export default function useBirdSearch(query) {
       method: "post",
       headers: headers,
       data: { query },
+      cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((response) => {
-        console.log("Response: ", response.data.data.birdCollection);
         setBirds((prevBirds) => {
-          console.log("prev Bird: ", prevBirds);
-          // console.log("Total: ", response.data.data.birdCollection.total);
-          total.current = response.data.data.birdCollection.total;
-          return response.data.data.birdCollection;
+          return [{ ...prevBirds, ...response.data.data.birdCollection }];
         });
+        setHasMore(response.data.data.birdCollection.length > 0);
         setIsLoading(false);
-        console.log("Calling UseBirdSearch");
+        // total.current = response.data.data.birdCollection.total;
       })
-      .catch((err) =>
+      .catch((err) => {
+        if (axios.isCancel(err)) return;
+        setError(true);
         console.log(
           `dafuq in useBirdSearch ${err} birds are${JSON.stringify(birds)}`
-        )
-      );
+        );
+      });
+    return () => cancel();
   }, [query]);
-  return { birds, isLoading, total };
+  return { birds, isLoading, total, error, hasMore };
 }

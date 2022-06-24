@@ -5,15 +5,11 @@ import Search from "./components/Search";
 import { useEffect, useState, useCallback, useRef } from "react";
 import Loading from "./components/Loading";
 import useBirdSearch from "./useBirdSearch";
-import getBirds from "./getBirds";
+// import getBirds from "../delete/getBirds";
 
 function App() {
   var count = useRef(0);
   const [skipNum, setSkipNum] = useState(0);
-  const [hasMore, setHasMore] = useState(false);
-  const [appBirds, setAppBirds] = useState();
-  const cardDisplay = [];
-  const [cardCollection, setCardCollection] = useState([]);
   const limitNum = 4;
   const query = `query {
   birdCollection(skip:${skipNum} limit:${limitNum}) {
@@ -36,8 +32,11 @@ function App() {
     }
   }
 }`;
+  const { birds, isLoading, total, error, hasMore } = useBirdSearch(
+    query,
+    skipNum
+  );
 
-  const { birds, isLoading, total } = getBirds(query);
   const options = {
     rootMargin: "0px",
     threshold: 1,
@@ -46,7 +45,7 @@ function App() {
   const observer = useRef();
   const lastCard = useCallback(
     (node) => {
-      count = count + 1;
+      count = count + parseInt(1);
       console.log("Ref Count: ", count);
 
       if (isLoading) return;
@@ -54,44 +53,16 @@ function App() {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           console.log("visible");
-          setSkipNum((prev) => prev + parseInt(limitNum));
-          return;
+          setSkipNum((prev) => prev + limitNum);
+          console.log("Query is: ", query);
         }
       }, options);
       if (observer.current) observer.current.disconnect();
       if (node) observer.current.observe(node);
       console.log("in lastCard", node);
     },
-    [isLoading]
+    [isLoading, hasMore]
   );
-
-  const DisplayBirdContent = () => {
-    let content = document.getElementsByClassName("div__content");
-    console.log(content);
-    console.log("App.js Total: ", total.current);
-
-    return (
-      <>
-        {birds.items.map((item, index) => {
-          // console.log("Bird: ", item);
-          // console.log("Birds length: ", birds.items.length);
-          if (birds.items.length === index + 1) {
-            console.log("Last bird!!!", item, index);
-
-            cardDisplay.push(
-              <div className="card__show div__card" ref={lastCard} key={index}>
-                <Card key={item.sys.id} {...item} />
-              </div>
-            );
-            return cardDisplay;
-          } else {
-            cardDisplay.push(<Card key={item.sys.id} {...item} />);
-            return cardDisplay;
-          }
-        })}
-      </>
-    );
-  };
 
   return (
     <>
@@ -105,7 +76,24 @@ function App() {
               <Loading />
             </div>
           ) : (
-            cardDisplay && DisplayBirdContent()
+            birds[0].items.map((item, index) => {
+              // console.log("Bird: ", item);
+              // console.log("Birds length: ", birds.items.length);
+              if (birds[0].items.length === index + 1) {
+                console.log("Last bird!!!", item, index);
+                return (
+                  <div
+                    className="card__show div__card"
+                    ref={lastCard}
+                    key={index}
+                  >
+                    <Card key={item.sys.id} {...item} />
+                  </div>
+                );
+              } else {
+                return <Card key={item.sys.id} {...item} />;
+              }
+            })
           )}
         </div>
       </main>
