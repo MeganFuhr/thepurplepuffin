@@ -4,13 +4,19 @@ import Card from "./components/Card";
 import Search from "./components/Search";
 import { useEffect, useState, useCallback, useRef } from "react";
 import Loading from "./components/Loading";
-import UseBirdSearch from "./UseBirdSearch";
+import useBirdSearch from "./useBirdSearch";
+import getBirds from "./getBirds";
 
 function App() {
+  var count = useRef(0);
   const [skipNum, setSkipNum] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
+  const [appBirds, setAppBirds] = useState();
+  const cardDisplay = [];
+  const [cardCollection, setCardCollection] = useState([]);
   const limitNum = 4;
   const query = `query {
-  birdCollection(skip:${skipNum} limit:4) {
+  birdCollection(skip:${skipNum} limit:${limitNum}) {
 	total
     items {
       sys {
@@ -31,18 +37,28 @@ function App() {
   }
 }`;
 
-  const { birds, isLoading } = UseBirdSearch(query);
+  const { birds, isLoading, total } = getBirds(query);
+  const options = {
+    rootMargin: "0px",
+    threshold: 1,
+  };
+
   const observer = useRef();
   const lastCard = useCallback(
     (node) => {
+      count = count + 1;
+      console.log("Ref Count: ", count);
+
       if (isLoading) return;
-      if (observer.current) observer.current.disconnect();
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           console.log("visible");
-          // UseBirdSearch(query);
+          setSkipNum((prev) => prev + parseInt(limitNum));
+          return;
         }
-      });
+      }, options);
+      if (observer.current) observer.current.disconnect();
       if (node) observer.current.observe(node);
       console.log("in lastCard", node);
     },
@@ -50,20 +66,27 @@ function App() {
   );
 
   const DisplayBirdContent = () => {
+    let content = document.getElementsByClassName("div__content");
+    console.log(content);
+    console.log("App.js Total: ", total.current);
+
     return (
       <>
-        {birds[0].items.map((item, index) => {
-          console.log("Bird: ", item);
-          console.log("Birds length: ", birds[0].items.length);
-          if (birds[0].items.length === index + 1) {
+        {birds.items.map((item, index) => {
+          // console.log("Bird: ", item);
+          // console.log("Birds length: ", birds.items.length);
+          if (birds.items.length === index + 1) {
             console.log("Last bird!!!", item, index);
-            return (
-              <div className="div__card card__show" ref={lastCard} key={index}>
+
+            cardDisplay.push(
+              <div className="card__show div__card" ref={lastCard} key={index}>
                 <Card key={item.sys.id} {...item} />
               </div>
             );
+            return cardDisplay;
           } else {
-            return <Card key={item.sys.id} {...item} />;
+            cardDisplay.push(<Card key={item.sys.id} {...item} />);
+            return cardDisplay;
           }
         })}
       </>
@@ -82,7 +105,7 @@ function App() {
               <Loading />
             </div>
           ) : (
-            DisplayBirdContent()
+            cardDisplay && DisplayBirdContent()
           )}
         </div>
       </main>

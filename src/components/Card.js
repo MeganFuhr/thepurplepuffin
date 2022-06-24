@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import UseBirdSearch from "../UseBirdSearch";
+import useBirdSearch from "../useBirdSearch";
 import GetMap from "./GetMap";
 import ImageModal from "./ImageModal";
 
@@ -24,7 +24,7 @@ const Card = (props) => {
           setIsSeen(true);
         }
       });
-    });
+    }, options);
 
     observer.observe(cardRef.current);
   });
