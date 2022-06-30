@@ -8,7 +8,6 @@ import useBirdSearch from "./useBirdSearch";
 // import getBirds from "../delete/getBirds";
 
 function App() {
-  var count = useRef(0);
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -45,21 +44,16 @@ function App() {
   const observer = useRef();
   const lastCard = useCallback(
     (node) => {
-      count = count + parseInt(1);
-      console.log("Ref Count: ", count);
-
       if (isLoading) return;
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
           console.log("visible");
           setSkipNum((prev) => prev + limitNum);
-          console.log("Query is: ", query);
         }
       }, options);
       if (observer.current) observer.current.disconnect();
       if (node) observer.current.observe(node);
-      console.log("in lastCard", node);
     },
     [isLoading, hasMore]
   );
@@ -68,19 +62,15 @@ function App() {
     <>
       <main>
         <Title />
-        <Search />
+        {/* <Search /> */}
         <div className="div__content">
-          {console.log("App.js Birds: ", birds, "IsLoading is: ", isLoading)}
           {isLoading ? (
             <div className="div__loading">
               <Loading />
             </div>
           ) : (
-            birds[0].items.map((item, index) => {
-              // console.log("Bird: ", item);
-              // console.log("Birds length: ", birds.items.length);
-              if (birds[0].items.length === index + 1) {
-                console.log("Last bird!!!", item, index);
+            birds.map((item, index) => {
+              if (birds.length === index + 1) {
                 return (
                   <div
                     className="card__show div__card"

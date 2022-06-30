@@ -4,15 +4,15 @@ import Card from "./components/Card";
 import React from "react";
 
 export default function useBirdSearch(query, skipNum) {
-  const [birds, setBirds] = useState({});
+  const [birds, setBirds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const total = useRef("");
 
-  useEffect(() => {
-    setBirds({});
-  }, [query]);
+  // useEffect(() => {
+  //   setBirds({});
+  // }, [query]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,9 +32,9 @@ export default function useBirdSearch(query, skipNum) {
     })
       .then((response) => {
         setBirds((prevBirds) => {
-          return [{ ...prevBirds, ...response.data.data.birdCollection }];
+          return [...prevBirds, ...response.data.data.birdCollection.items];
         });
-        setHasMore(response.data.data.birdCollection.length > 0);
+        setHasMore(birds.length > response.data.data.birdCollection.total);
         setIsLoading(false);
         // total.current = response.data.data.birdCollection.total;
       })
