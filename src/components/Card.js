@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import useBirdSearch from "../useBirdSearch";
 import GetMap from "./GetMap";
 import ImageModal from "./ImageModal";
 
