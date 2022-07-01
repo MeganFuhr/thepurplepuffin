@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import useBirdSearch from "../useBirdSearch";
 import GetMap from "./GetMap";
 import ImageModal from "./ImageModal";
 
@@ -14,7 +15,7 @@ const Card = (props) => {
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         if (isSeen && !entry.isIntersecting) {
           entry.target.classList.remove("card__show");
         } else {
