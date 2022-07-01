@@ -34,7 +34,7 @@ export default function useBirdSearch(query, skipNum) {
         setBirds((prevBirds) => {
           return [...prevBirds, ...response.data.data.birdCollection.items];
         });
-        setHasMore(birds.length > response.data.data.birdCollection.total);
+        setHasMore(birds.length < response.data.data.birdCollection.total);
         setIsLoading(false);
         // total.current = response.data.data.birdCollection.total;
       })

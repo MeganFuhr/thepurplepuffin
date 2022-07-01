@@ -10,6 +10,7 @@ import useBirdSearch from "./useBirdSearch";
 function App() {
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
+  const [dislpayBirds, setDisplayBirds] = useState([]);
   const query = `query {
   birdCollection(skip:${skipNum} limit:${limitNum}) {
 	total
@@ -45,14 +46,14 @@ function App() {
   const lastCard = useCallback(
     (node) => {
       if (isLoading) return;
-
+      if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && hasMore) {
           console.log("visible");
           setSkipNum((prev) => prev + limitNum);
         }
       }, options);
-      if (observer.current) observer.current.disconnect();
+
       if (node) observer.current.observe(node);
     },
     [isLoading, hasMore]
