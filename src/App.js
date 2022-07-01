@@ -4,7 +4,7 @@ import Card from "./components/Card";
 // import Search from "./components/Search";
 import { useState, useCallback, useRef } from "react";
 import Loading from "./components/Loading";
-import useBirdSearch from "./useBirdSearch";
+import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
   const [skipNum, setSkipNum] = useState(0);
