@@ -1,16 +1,14 @@
 import "./App.css";
 import Title from "./components/Title";
 import Card from "./components/Card";
-import Search from "./components/Search";
-import { useEffect, useState, useCallback, useRef } from "react";
+// import Search from "./components/Search";
+import { useState, useCallback, useRef } from "react";
 import Loading from "./components/Loading";
 import useBirdSearch from "./useBirdSearch";
-// import getBirds from "../delete/getBirds";
 
 function App() {
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
-  const [dislpayBirds, setDisplayBirds] = useState([]);
   const query = `query {
   birdCollection(skip:${skipNum} limit:${limitNum}) {
 	total
@@ -32,28 +30,24 @@ function App() {
     }
   }
 }`;
-  const { birds, isLoading, total, error, hasMore } = useBirdSearch(
-    query,
-    skipNum
-  );
+  const { birds, isLoading, error, hasMore } = useBirdSearch(query);
 
   const options = {
     rootMargin: "0px",
-    threshold: 1,
+    threshold: 0.25,
   };
 
   const observer = useRef();
   const lastCard = useCallback(
     (node) => {
       if (isLoading) return;
-      if (observer.current) observer.current.disconnect();
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          console.log("visible");
           setSkipNum((prev) => prev + limitNum);
         }
       }, options);
-
+      if (observer.current) observer.current.disconnect();
       if (node) observer.current.observe(node);
     },
     [isLoading, hasMore]
@@ -65,27 +59,24 @@ function App() {
         <Title />
         {/* <Search /> */}
         <div className="div__content">
-          {isLoading ? (
-            <div className="div__loading">
-              <Loading />
-            </div>
-          ) : (
-            birds.map((item, index) => {
-              if (birds.length === index + 1) {
-                return (
-                  <div
-                    className="card__show div__card"
-                    ref={lastCard}
-                    key={index}
-                  >
-                    <Card key={item.sys.id} {...item} />
-                  </div>
-                );
-              } else {
-                return <Card key={item.sys.id} {...item} />;
-              }
-            })
-          )}
+          {isLoading && <Loading />}
+          {error && "Error"}
+          {birds.map((item, index) => {
+            if (birds.length === index + 1) {
+              return (
+                <div
+                  className="card__show div__card"
+                  ref={lastCard}
+                  key={index}
+                >
+                  <Card key={item.sys.id} {...item} />
+                </div>
+              );
+            } else {
+              return <Card key={item.sys.id} {...item} />;
+            }
+          })}
+          ;
         </div>
       </main>
     </>
