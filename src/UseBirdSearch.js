@@ -1,18 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "./components/Card";
-import React from "react";
 
-export default function useBirdSearch(query, skipNum) {
+export default function useBirdSearch(query) {
   const [birds, setBirds] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
-  const total = useRef("");
-
-  // useEffect(() => {
-  //   setBirds({});
-  // }, [query]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -36,7 +29,6 @@ export default function useBirdSearch(query, skipNum) {
         });
         setHasMore(birds.length < response.data.data.birdCollection.total);
         setIsLoading(false);
-        // total.current = response.data.data.birdCollection.total;
       })
       .catch((err) => {
         if (axios.isCancel(err)) return;
@@ -47,5 +39,5 @@ export default function useBirdSearch(query, skipNum) {
       });
     return () => cancel();
   }, [query]);
-  return { birds, isLoading, total, error, hasMore };
+  return { birds, isLoading, error, hasMore };
 }
