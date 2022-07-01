@@ -32,14 +32,13 @@ function App() {
 }`;
   const { birds, isLoading, error, hasMore } = useBirdSearch(query);
 
-  const options = {
-    rootMargin: "0px",
-    threshold: 0.25,
-  };
-
   const observer = useRef();
   const lastCard = useCallback(
     (node) => {
+      const options = {
+        rootMargin: "0px",
+        threshold: 0.25,
+      };
       if (isLoading) return;
 
       observer.current = new IntersectionObserver((entries) => {
