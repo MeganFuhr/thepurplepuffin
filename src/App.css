@@ -44,12 +44,22 @@ code {
 }
 
 .darkmode-toggle {
-  width: 150px;
-  /* margin: 7rem auto 1rem auto; */
-  /* position:relative;
-  top: 4.75rem;
-  left:80rem; */
-  /* z-index: 12; */
+  margin: auto;
+  background-color: #FFFFFF;
+  border: 0;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: var(--gray);
+  font-size: .85rem;
+  padding: .50rem;
+  text-align: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.darkmode-toggle:hover {
+  background-color: var(--gray);
+  color: var(--white)
 }
 
 @media only screen and (max-width: 700px) {
@@ -118,10 +128,8 @@ nav {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* margin: auto; */
   margin: 7rem auto 1rem auto;
   min-width: 36rem;
-  flex-direction: column;
 }
 
 .div__card {

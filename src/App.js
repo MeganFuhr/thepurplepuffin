@@ -73,7 +73,7 @@ function App() {
               setDarkMode((prev) => !prev);
             }}
           >
-            Toggle dark mode
+            Dark Mode
           </button>
           {isLoading && <Loading />}
           {error && "Error"}
