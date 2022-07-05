@@ -1,5 +1,4 @@
 import React from "react";
-import { useRef, useEffect, useState } from "react";
 import puffin from "../img/puffin.png";
 
 export default function Title(darkMode) {
