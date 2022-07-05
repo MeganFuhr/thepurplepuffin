@@ -2,11 +2,12 @@ import "./App.css";
 import Title from "./components/Title";
 import Card from "./components/Card";
 // import Search from "./components/Search";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Loading from "./components/Loading";
 import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -52,11 +53,27 @@ function App() {
     [isLoading, hasMore]
   );
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
   return (
     <>
       <main>
-        <Title />
-        {/* <Search /> */}
+        {console.log("Dark mode enabled: ", darkMode)}
+        <Title darkMode={darkMode} />
+        {/* <Search /> */}{" "}
+        <button
+          onClick={() => {
+            setDarkMode((prev) => !prev);
+          }}
+        >
+          Toggle dark mode
+        </button>
         <div className="div__content">
           {isLoading && <Loading />}
           {error && "Error"}

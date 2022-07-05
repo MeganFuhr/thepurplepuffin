@@ -4,6 +4,7 @@
   --purple: #373E98;
   --gray: #2A2A2A;
   --white: #FFFFFF;
+  --black: rgb(0, 0, 0);
 }
 
 * {
@@ -18,11 +19,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--white);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.dark-mode {
+  background-color: var(--gray);
+  color: var(--white);
+}
+
+.dark-mode-title {
+  background-color: var(--gray);
+  color: var(--white);
+  width: auto;
+  height: auto;
+}
+
+.light-mode {
+  background-color: var(--white);
+}
+
+button {
+  margin: 7rem auto 1rem auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -42,8 +64,7 @@ code {
 }
 
 nav {
-  background: var(--white);
-  border-bottom: 5px solid var(--light-yellow);
+    border-bottom: 5px solid var(--light-yellow);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   position: fixed;
@@ -53,6 +74,7 @@ nav {
 }
 
 .div__title {
+ 
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
@@ -93,7 +115,6 @@ nav {
   min-width: 36rem;
   height: 16rem;
   margin: .5rem auto;
-  background-color: var(--white);
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   display: flex;
@@ -138,7 +159,6 @@ nav {
   font-size: 36px;
   line-height: 43px;
   text-align: center;
-  color: #2A2A2A;
 }
 
 .p__card_desription {
@@ -148,7 +168,6 @@ nav {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  color: #000000;  
   opacity: 0.7;
   width: 25rem;
 }

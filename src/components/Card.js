@@ -49,7 +49,9 @@ const Card = (props) => {
 
       <div className="div__card_content_text">
         <h1 className="h1__card_title">{props.name}</h1>
-        <p className="p__card_desription">{props.description}</p>
+        <p id="card_description" className="p__card_desription">
+          {props.description}
+        </p>
         <p className="p__card_lonlat">
           Lon: {props.location.lon} &nbsp; &nbsp; {props.location.lat}
         </p>
