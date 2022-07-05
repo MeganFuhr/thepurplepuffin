@@ -2,11 +2,12 @@ import "./App.css";
 import Title from "./components/Title";
 import Card from "./components/Card";
 // import Search from "./components/Search";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Loading from "./components/Loading";
 import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -52,12 +53,28 @@ function App() {
     [isLoading, hasMore]
   );
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
   return (
     <>
       <main>
-        <Title />
-        {/* <Search /> */}
+        <Title darkMode={darkMode} />
+        {/* <Search /> */}{" "}
         <div className="div__content">
+          <button
+            className="darkmode-toggle"
+            onClick={() => {
+              setDarkMode((prev) => !prev);
+            }}
+          >
+            Dark Mode
+          </button>
           {isLoading && <Loading />}
           {error && "Error"}
           {birds.map((item, index) => {
@@ -68,11 +85,11 @@ function App() {
                   ref={lastCard}
                   key={index}
                 >
-                  <Card key={item.sys.id} {...item} />
+                  <Card darkMode={darkMode} {...item} key={item.sys.id} />
                 </div>
               );
             } else {
-              return <Card key={item.sys.id} {...item} />;
+              return <Card darkMode={darkMode} {...item} key={item.sys.id} />;
             }
           })}
           ;
