@@ -40,6 +40,7 @@ const Card = (props) => {
 
         <ImageModal
           open={isOpen}
+          darkMode={props.darkMode}
           onClose={() => setIsOpen(false)}
           imgUrl={`${props.image.url}?w=650&h=550&fit=scale`}
           name={props.name}

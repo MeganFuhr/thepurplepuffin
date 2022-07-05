@@ -5,7 +5,6 @@ import puffin from "../img/puffin.png";
 export default function Title(darkMode) {
   return (
     <nav>
-      {console.log("Dark Mode in Nav is: ", typeof darkMode)}
       <div
         className={`div__title ${
           darkMode.darkMode ? "dark-mode-title" : "light-mode"

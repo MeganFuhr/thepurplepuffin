@@ -64,17 +64,17 @@ function App() {
   return (
     <>
       <main>
-        {console.log("Dark mode enabled: ", darkMode)}
         <Title darkMode={darkMode} />
         {/* <Search /> */}{" "}
-        <button
-          onClick={() => {
-            setDarkMode((prev) => !prev);
-          }}
-        >
-          Toggle dark mode
-        </button>
         <div className="div__content">
+          <button
+            className="darkmode-toggle"
+            onClick={() => {
+              setDarkMode((prev) => !prev);
+            }}
+          >
+            Toggle dark mode
+          </button>
           {isLoading && <Loading />}
           {error && "Error"}
           {birds.map((item, index) => {
@@ -85,11 +85,11 @@ function App() {
                   ref={lastCard}
                   key={index}
                 >
-                  <Card key={item.sys.id} {...item} />
+                  <Card darkMode={darkMode} {...item} key={item.sys.id} />
                 </div>
               );
             } else {
-              return <Card key={item.sys.id} {...item} />;
+              return <Card darkMode={darkMode} {...item} key={item.sys.id} />;
             }
           })}
           ;
