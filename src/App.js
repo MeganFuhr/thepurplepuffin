@@ -81,7 +81,7 @@ function App() {
             if (birds.length === index + 1) {
               return (
                 <div
-                  className="card__show div__card"
+                  className="card__show div__last_card"
                   ref={lastCard}
                   key={index}
                 >

@@ -2,6 +2,7 @@
   --light-yellow: #FEE36E;
   --pink: #F16775;
   --purple: #373E98;
+  --alt-purple: #8e94e6;
   --gray: #2A2A2A;
   --white: #FFFFFF;
   --black: rgb(0, 0, 0);
@@ -114,8 +115,12 @@ nav {
   width: auto;
 }
 
-.h1__span {
+.lightmode-h1__span {
   color: var(--purple);
+}
+
+.darkmode-h1__span {
+  color: var(--alt-purple);
 }
 
 .img__title {
@@ -145,6 +150,10 @@ nav {
   opacity: 0;
   transition: 150ms;
 } 
+
+.div__last_card {
+  margin: .5rem auto;
+}
 
 .card__show { 
   transform: translateY(0);
