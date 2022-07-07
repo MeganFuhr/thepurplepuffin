@@ -151,6 +151,10 @@ nav {
   transition: 150ms;
 } 
 
+.div__last_card {
+  margin: .5rem auto;
+}
+
 .card__show { 
   transform: translateY(0);
   opacity: 1;
