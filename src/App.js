@@ -75,7 +75,6 @@ function App() {
           >
             Dark Mode
           </button>
-          {isLoading && <Loading />}
           {error && "Error"}
           {birds.map((item, index) => {
             if (birds.length === index + 1) {
@@ -94,6 +93,7 @@ function App() {
           })}
           ;
         </div>
+        {isLoading && <Loading />}
       </main>
     </>
   );
