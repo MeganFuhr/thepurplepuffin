@@ -93,7 +93,7 @@ function App() {
           })}
           ;
         </div>
-        {isLoading && <Loading />}
+        <div className="div__loading">{isLoading && <Loading />}</div>
       </main>
     </>
   );

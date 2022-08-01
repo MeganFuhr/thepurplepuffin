@@ -334,6 +334,12 @@ nav {
 }
 .div__loading {
   position: fixed;
-  top: calc(50% - 40px);
+  top: calc(95% - 40px);
+  left: calc(50% - 40px);
+}
+
+.modal__loading {
+  position: fixed;
+  top: calc(75% - 40px);
   left: calc(50% - 40px);
 }
