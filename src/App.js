@@ -1,6 +1,7 @@
 import "./App.css";
 import Title from "./components/Title";
 import Card from "./components/Card";
+import Footer from "./components/Footer";
 // import Search from "./components/Search";
 import { useState, useCallback, useRef, useEffect } from "react";
 import Loading from "./components/Loading";
@@ -94,6 +95,7 @@ function App() {
         </div>
         <div className="div__loading">{isLoading && <Loading />}</div>
       </main>
+      <Footer />
     </>
   );
 }
