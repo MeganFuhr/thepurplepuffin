@@ -343,3 +343,16 @@ nav {
   top: calc(75% - 40px);
   left: calc(50% - 40px);
 }
+
+.footer {
+  bottom: .25rem;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  min-height: 2rem;
+  margin: auto;
+}
+
+.github_svg {
+  color:var(--alt-purple)
+}
