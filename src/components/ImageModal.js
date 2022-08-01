@@ -25,7 +25,7 @@ export default function ImageModal({
         />
 
         {!loaded && (
-          <div className="div__loading">
+          <div className="modal__loading">
             <Loading />
           </div>
         )}

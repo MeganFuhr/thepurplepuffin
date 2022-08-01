@@ -91,9 +91,8 @@ function App() {
               return <Card darkMode={darkMode} {...item} key={item.sys.id} />;
             }
           })}
-          ;
         </div>
-        {isLoading && <Loading />}
+        <div className="div__loading">{isLoading && <Loading />}</div>
       </main>
     </>
   );
