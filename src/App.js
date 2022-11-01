@@ -8,14 +8,16 @@ import Loading from "./components/Loading";
 import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
-  let dark;
+  const checkLocalStorage = () => {
+    const ls = localStorage.getItem("dark");
+    if (ls === null || ls === "true") {
+      return false;
+    } else if (ls === "false") {
+      return true;
+    }
+  };
 
-  if (localStorage) {
-    dark = localStorage.getItem("dark");
-  }
-  console.log("Dark is:", localStorage.getItem("dark"));
-
-  const [darkMode, setDarkMode] = useState(dark);
+  const [darkMode, setDarkMode] = useState(checkLocalStorage());
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -39,6 +41,7 @@ function App() {
     }
   }
 }`;
+
   const { birds, isLoading, error, hasMore } = useBirdSearch(query);
 
   const observer = useRef();
@@ -80,6 +83,7 @@ function App() {
             onClick={() => {
               setDarkMode((prev) => !prev);
               localStorage.setItem("dark", darkMode);
+              console.log("In onCLick and darkMode is:", darkMode);
             }}
           >
             Dark Mode
