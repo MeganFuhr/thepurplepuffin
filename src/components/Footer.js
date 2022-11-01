@@ -14,6 +14,7 @@ function Footer() {
             aria-label="Browse Megan's code on GitHub"
             target="_blank"
             rel="noreferrer"
+
           >
             <svg
               className="github_svg"
