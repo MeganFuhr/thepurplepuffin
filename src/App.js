@@ -8,7 +8,14 @@ import Loading from "./components/Loading";
 import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  let dark;
+
+  if (localStorage) {
+    dark = localStorage.getItem("dark");
+  }
+  console.log("Dark is:", localStorage.getItem("dark"));
+
+  const [darkMode, setDarkMode] = useState(dark);
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -72,6 +79,7 @@ function App() {
             className="darkmode-toggle"
             onClick={() => {
               setDarkMode((prev) => !prev);
+              localStorage.setItem("dark", darkMode);
             }}
           >
             Dark Mode
