@@ -83,7 +83,6 @@ function App() {
             onClick={() => {
               setDarkMode((prev) => !prev);
               localStorage.setItem("dark", darkMode);
-              console.log("In onCLick and darkMode is:", darkMode);
             }}
           >
             Dark Mode
