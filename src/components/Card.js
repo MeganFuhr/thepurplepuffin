@@ -39,6 +39,7 @@ const Card = (props) => {
         />
 
         <ImageModal
+          setIsOpen={setIsOpen}
           open={isOpen}
           darkMode={props.darkMode}
           onClose={() => setIsOpen(false)}
