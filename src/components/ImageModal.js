@@ -9,12 +9,13 @@ export default function ImageModal({
   name,
   description,
   darkMode,
+  setIsOpen,
 }) {
   const [loaded, setLoaded] = useState(false);
 
   if (!open) return null;
   return ReactDom.createPortal(
-    <div className="modal__overlay">
+    <div className="modal__overlay" onClick={() => setIsOpen(false)}>
       <div
         className={`div__image-modal ${darkMode ? "dark-mode" : "light-mode"}`}
       >
