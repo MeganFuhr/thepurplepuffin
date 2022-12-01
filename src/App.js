@@ -35,7 +35,6 @@ function App() {
 
   useEffect(() => {
     const ls = localStorage.getItem("dark");
-    console.log(`ls: ${ls}`);
     if (ls) {
       setDarkMode(ls);
     } else {
