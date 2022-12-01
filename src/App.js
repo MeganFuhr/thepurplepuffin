@@ -8,16 +8,7 @@ import Loading from "./components/Loading";
 import useBirdSearch from "./hooks/useBirdSearch";
 
 function App() {
-  const checkLocalStorage = () => {
-    const ls = localStorage.getItem("dark");
-    if (ls === null || ls === "true") {
-      return false;
-    } else if (ls === "false") {
-      return true;
-    }
-  };
-
-  const [darkMode, setDarkMode] = useState(checkLocalStorage());
+  const [darkMode, setDarkMode] = useState();
   const [skipNum, setSkipNum] = useState(0);
   const limitNum = 4;
   const query = `query {
@@ -41,6 +32,16 @@ function App() {
     }
   }
 }`;
+
+  useEffect(() => {
+    const ls = localStorage.getItem("dark");
+    console.log(`ls: ${ls}`);
+    if (ls) {
+      setDarkMode(ls);
+    } else {
+      setDarkMode(false);
+    }
+  }, []);
 
   const { birds, isLoading, error, hasMore } = useBirdSearch(query);
 
@@ -70,6 +71,7 @@ function App() {
     } else {
       document.body.classList.remove("dark-mode");
     }
+    localStorage.setItem("dark", darkMode);
   }, [darkMode]);
 
   return (
@@ -82,10 +84,9 @@ function App() {
             className="darkmode-toggle"
             onClick={() => {
               setDarkMode((prev) => !prev);
-              localStorage.setItem("dark", darkMode);
             }}
           >
-            Dark Mode
+            &#9789; Dark Mode &#9790;
           </button>
           {error && "Error"}
           {birds.map((item, index) => {
