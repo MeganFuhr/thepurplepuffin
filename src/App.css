@@ -62,20 +62,9 @@ code {
   color: var(--white)
 }
 
-@media only screen and (max-width: 600px) {
-  .img__title {
-    display: none;
-  }
+/* @media only screen and (max-width: 600px) {
 
- .div__title {
-    display: block;
-  }
-
-  /* .div__search {
-    width: 300px !important;
-    margin-left: 11rem !important;
-  } */
-}
+} */
 
 nav {
   border-bottom: 5px solid var(--light-yellow);
@@ -138,7 +127,7 @@ nav {
   transform: translateY(100px);
   opacity: 0;
   transition: 150ms;
-} 
+}
 
 .div__last_card {
   margin: .5rem auto;
