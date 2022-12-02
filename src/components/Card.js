@@ -32,7 +32,7 @@ const Card = (props) => {
     <div ref={cardRef} className="div__card">
       <div className="div__card_content">
         <img
-          className="img__card"
+          className={`img__card ${props.darkMode ? "dark-mode" : "light-mode"}`}
           src={`${props.image.url}?f=center&w=200&h=200&fm=avif&q=50&fit=scale`}
           alt={props.description}
           onClick={() => setIsOpen(true)}

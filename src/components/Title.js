@@ -9,7 +9,11 @@ export default function Title(darkMode) {
           darkMode.darkMode ? "dark-mode-title" : "light-mode"
         }`}
       >
-        <h1 className="h1__title">
+        <h1
+          className={`h1__title ${
+            darkMode.darkMode ? "dark-mode-title" : "light-mode"
+          }`}
+        >
           The
           <span
             className={`${
