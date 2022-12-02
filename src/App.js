@@ -78,7 +78,9 @@ function App() {
       <main>
         <Title darkMode={darkMode} />
         {/* <Search /> */}{" "}
-        <div className="div__content">
+        <div
+          className={`div__content ${darkMode ? "dark-mode" : "light-mode"}`}
+        >
           <button
             className="darkmode-toggle"
             onClick={() => {
